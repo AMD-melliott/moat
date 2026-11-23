@@ -15,6 +15,16 @@ Contents:
 
 ## Which files compile as HIP
 
+**Upstream ignore rules can silently drop port files.** A port adds files upstream never
+had: shadow headers, patch files, build helpers. If any of them match an existing ignore pattern,
+`git status` does not show them, and a commit, PR or fresh clone of the port is missing them while
+the working tree still builds. In the cuCollections port the two libhipcxx patches were
+`cmake/hip/patches/*.diff`; upstream's `.gitignore` has `*.diff`, so a clean copy failed at
+configure (`Couldn't find patch file`). Before calling a port done, run `git status --ignored`
+and `git check-ignore -v <each new file>`, then rebuild from a fresh clone of the committed
+result (`git stash -u` is not a substitute: it leaves ignored files in place). Rename the file
+or force-add it, and say which in the summary.
+
 **A force-included compat header creates no build dependency edge.** After editing a header
 injected with `-include`, object files are NOT rebuilt: wipe them manually or you validate
 stale code and get a silent false pass. (lc0)

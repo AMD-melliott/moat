@@ -125,7 +125,8 @@ A real-GPU test run is the only evidence that counts. Lint is not validation, an
 build proves compilation and nothing else. Cover both wavefront widths and each OS the
 project supports: at least one wave64 (CDNA) GPU, one wave32 (RDNA) GPU, and Windows when
 the project builds there. Also compile the CUDA path with nvcc as a no-regression check: an
-additive ROCm port must leave the CUDA build a pure passthrough. `references/validation.md`.
+additive ROCm port must leave the CUDA build a pure passthrough. Rerun the suite on a fresh
+copy of what a commit captures, not the working tree. `references/validation.md`.
 
 ## Keeping an open PR mergeable
 
@@ -300,6 +301,7 @@ edit by hand). Scan it for your symptom, then open the file for the cause and th
 
 **`references/build-cmake-link.md`** -- Build: CMake, device linking and dependencies
 
+- Upstream ignore rules can silently drop port files
 - A force-included compat header creates no build dependency edge
 - Use the CUDA build's host compiler for host C++ in a large app
 - The vcpkg toolchain already overrides `add_library`/`add_executable`
