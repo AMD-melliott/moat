@@ -71,7 +71,9 @@ byte-identical to upstream. Recipes: `references/strategy-a-cmake.md`,
 
 Check whether an AMD port already exists and whether it is authoritative: an AMD-official
 work in progress shifts the value to validating and improving it, while a one-off community
-fork is a hint, never code to inherit. `references/assess-existing-support.md`.
+fork is a hint, never code to inherit. Asked to port and finding an authoritative AMD port,
+build on it in the same run instead of stopping to ask, and do not port this repo a second
+time. `references/assess-existing-support.md`.
 
 Some CUDA has no HIP analogue to translate INTO (CUTLASS, CuTe, TensorRT, raw PTX), so
 hipify succeeds at doing nothing and the port looks small. A reimplementation against an
